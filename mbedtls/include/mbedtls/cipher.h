@@ -158,6 +158,7 @@ typedef enum {
     MBEDTLS_MODE_GCM,                    /**< The GCM cipher mode. */
     MBEDTLS_MODE_STREAM,                 /**< The stream cipher mode. */
     MBEDTLS_MODE_CCM,                    /**< The CCM cipher mode. */
+    MBEDTLS_MODE_XTS,                    /**< The XTS cipher mode. */
 } mbedtls_cipher_mode_t;
 
 /** Supported cipher padding types. */
@@ -273,7 +274,8 @@ typedef struct {
     /** Number of Bytes that have not been processed yet. */
     size_t unprocessed_len;
 
-    /** Current IV or NONCE_COUNTER for CTR-mode. */
+    /** Current IV or NONCE_COUNTER for CTR-mode, data unit (or sector) number
+     * for XTS-mode. */
     unsigned char iv[MBEDTLS_MAX_IV_LENGTH];
 
     /** IV size in Bytes, for ciphers with variable-length IVs. */
